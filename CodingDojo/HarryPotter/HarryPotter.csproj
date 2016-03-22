@@ -44,9 +44,11 @@
   <ItemGroup>
     <Compile Include="BookBuying.cs" />
     <Compile Include="BookPricing.cs" />
+    <Compile Include="BookPromotionItem.cs" />
     <Compile Include="BookSelling.cs" />
     <Compile Include="BookStore.cs" />
     <Compile Include="Book.cs" />
+    <Compile Include="CombinationHelper.cs" />
     <Compile Include="HappyPotterPromotionService.cs" />
     <Compile Include="IBookSelling.cs" />
     <Compile Include="IPromotionService.cs" />

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace HarryPotter
 {
     public class BookStore
     {
-        public List<Book> Episode = new List<Book>
+        public List<Book> Books = new List<Book>
         {
             new Book
             {
@@ -60,105 +61,39 @@ namespace HarryPotter
                 UnitPrice = 8.0
             },
         };
-        public List<BookPromotion> Promotions = new List<BookPromotion>
+
+        public List<BookPromotion> HarryPotterPromotion()
         {
-            new BookPromotion
+            var promotedBooks = new[] {1, 2, 3, 4, 5};
+            var promotedDiscounts = new Dictionary<int, double>()
             {
-                BookId = new [] {1,2},
-                Discount = 5
+                {2,0.05},
+                {3,0.10},
+                {4,0.20},
+                {5,0.25}
 
-            },
-            new BookPromotion
+            };
+            var result = new List<BookPromotion>();
+            for (var i = 2; i <= 5; i++)
             {
-                BookId = new [] {1,3},
-                Discount = 5
+                var availableCombinations = promotedBooks.Combinations(i);
+                result.AddRange(GetPromotions(availableCombinations, promotedDiscounts[i]));
+            }
+            return result;
+        }
 
-            },new BookPromotion
+        public List<BookPromotion> GetPromotions(IEnumerable<IEnumerable<int>> arrays, double discount)
+        {
+            var result = new List<BookPromotion>();
+            foreach (var array in arrays)
             {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },new BookPromotion
-            {
-                BookId = new [] {1,2},
-                Discount = 5
-
-            },
-        };
+                var bookPromotion = new BookPromotion {Discount = discount};
+                foreach (var bookPromotionItem in array.Select(i => new BookPromotionItem {BookId = i, Quantity = 1}))
+                {
+                    bookPromotion.Items.Add(bookPromotionItem);
+                }
+            }
+            return result;
+        }
     }
 }
