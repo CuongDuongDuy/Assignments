@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HarryPotter
 {
@@ -20,48 +16,51 @@ namespace HarryPotter
             }
         }
 
-        private void Processing()
+        private List<BookSelling> Processing()
         {
             var result = new List<BookSelling>();
             foreach (var bookPromotion in promotions)
             {
-                if (CheckValidCombination(bookPromotion.BookId))
+                var temp = CheckValidCriteria(bookPromotion.Criteria);
+                if (temp != null)
                 {
-                    result.Add(ApplyValidCombination(bookPromotion.BookId));
+                    var boolSelling = new BookSelling
+                    {
+                        List = temp,
+                        Discount = bookPromotion.Discount
+                    };
+                    result.Add(boolSelling);
+                    boolSelling.UpdateCurrentBuying(ref itemsBuying);
                 }
+
             }
+            return result;
         }
 
-        private bool CheckValidCombination(int[] bookIds)
+        private List<List<BookPromotionItem>> CheckValidCriteria(List<Criteria> criteria )
         {
-            foreach (var bookId in bookIds)
+            var result = new List<List<BookPromotionItem>>();
+            foreach (var criterion in criteria)
             {
-                var quantityBuying = itemsBuying[bookId];
-                if (quantityBuying== )
+                var temp = criterion.GetFirstValidCombination(itemsBuying);
+                if (temp == null)
                 {
-                    return false;
+                    return null;
+                }
+                else
+                {
+                    result.Add(temp);
                 }
             }
-            return true;
-        }
-
-        private BookSelling ApplyValidCombination(int[] bookIds)
-        {
-            foreach (var bookId in bookIds)
-            {
-                itemsBuying[bookId]--;
-            }
-            return new BookSelling
-            {
-                BookIds = bookIds
-            };
-
+            return result;
         }
 
         public IEnumerable<BookSelling> GetBuyingCombinations()
         {
-            var result = new List<BookSelling>();
+            var result = Processing();
+
             return result;
         }
+
     }
 }

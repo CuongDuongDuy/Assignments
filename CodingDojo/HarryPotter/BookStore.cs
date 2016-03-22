@@ -77,23 +77,33 @@ namespace HarryPotter
             for (var i = 2; i <= 5; i++)
             {
                 var availableCombinations = promotedBooks.Combinations(i);
-                result.AddRange(GetPromotions(availableCombinations, promotedDiscounts[i]));
+                result.Add(GetPromotions(availableCombinations, promotedDiscounts[i]));
             }
             return result;
         }
 
-        public List<BookPromotion> GetPromotions(IEnumerable<IEnumerable<int>> arrays, double discount)
+        public BookPromotion GetPromotions(IEnumerable<IEnumerable<int>> arrays, double discount)
         {
-            var result = new List<BookPromotion>();
+            var result = new List<BookPromotionItem>();
+            var result1 = new List<List<BookPromotionItem>>();
             foreach (var array in arrays)
             {
-                var bookPromotion = new BookPromotion {Discount = discount};
-                foreach (var bookPromotionItem in array.Select(i => new BookPromotionItem {BookId = i, Quantity = 1}))
-                {
-                    bookPromotion.Items.Add(bookPromotionItem);
-                }
+                result.AddRange(array.Select(i => new BookPromotionItem {BookId = i, Quantity = 1}));
             }
-            return result;
+            
+            result1.Add(result);
+            var criteria = new Criteria
+            {
+                List = result1
+            };
+            var result3 = new List<Criteria>();
+            result3.Add(criteria);
+            var result2 = new BookPromotion
+            {
+                Criteria = result3,
+                Discount = discount
+            };
+            return result2;
         }
     }
 }
