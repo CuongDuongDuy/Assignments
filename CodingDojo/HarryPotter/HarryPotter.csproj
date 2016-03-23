@@ -52,8 +52,8 @@
     <Compile Include="HappyPotterPromotionService.cs" />
     <Compile Include="IBookSelling.cs" />
     <Compile Include="IPromotionService.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="BookPromotion.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="PromotionServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
