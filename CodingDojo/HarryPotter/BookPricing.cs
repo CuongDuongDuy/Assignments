@@ -1,4 +1,4 @@
-﻿namespace HarryPotter
+namespace HarryPotter
 {
     public class BookPricing
     {

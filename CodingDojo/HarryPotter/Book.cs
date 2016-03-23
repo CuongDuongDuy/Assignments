@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace HarryPotter
+﻿namespace HarryPotter
 {
     public class Book
     {

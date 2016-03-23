@@ -1,8 +1,9 @@
 ﻿namespace HarryPotter
 {
-    public class BookPromotionItem
+    public class BuyingItem
     {
         public int BookId { get; set; }
         public int Quantity { get; set; }
+
     }
 }

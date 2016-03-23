@@ -42,19 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookBuying.cs" />
-    <Compile Include="BookPricing.cs" />
-    <Compile Include="BookPromotionItem.cs" />
-    <Compile Include="BookSelling.cs" />
-    <Compile Include="BookStore.cs" />
     <Compile Include="Book.cs" />
+    <Compile Include="BookCalculatorService.cs" />
+    <Compile Include="BookPricing.cs" />
+    <Compile Include="BookStore.cs" />
+    <Compile Include="BuyingBasket.cs" />
+    <Compile Include="BuyingBookCombination.cs" />
+    <Compile Include="BuyingItem.cs" />
+    <Compile Include="BuyingQuantityCombination.cs" />
+    <Compile Include="BuyingSet.cs" />
     <Compile Include="CombinationHelper.cs" />
-    <Compile Include="HappyPotterPromotionService.cs" />
-    <Compile Include="IBookSelling.cs" />
-    <Compile Include="IPromotionService.cs" />
-    <Compile Include="BookPromotion.cs" />
+    <Compile Include="HarryPotterPromotionCompaign.cs" />
+    <Compile Include="IPromotionCompaign.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="PromotionServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
