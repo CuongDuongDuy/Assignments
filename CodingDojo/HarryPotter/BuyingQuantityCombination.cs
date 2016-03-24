@@ -6,7 +6,7 @@ namespace HarryPotter
     public class BuyingQuantityCombination
     {
         public List<int> QuantityBuying { get; set; }
-        public double Discount { get; set; }
+        public decimal Discount { get; set; }
 
         public BuyingSet GetFirstAvailableBuyingCombination(List<BuyingSet> currentBuyingSets,
             List<BuyingItem> currentBuyingItems)

@@ -14,11 +14,11 @@ namespace HarryPotter
             {
                 Items = new List<BuyingItem>
                 {
-                    new BuyingItem {BookId = 1, Quantity = 2},
-                    new BuyingItem {BookId = 2, Quantity = 2},
-                    new BuyingItem {BookId = 3, Quantity = 2},
-                    new BuyingItem {BookId = 4, Quantity = 1},
-                    new BuyingItem {BookId = 5, Quantity = 1}
+                    new BuyingItem {BookId = 1, Quantity = 4},
+                    new BuyingItem {BookId = 2, Quantity = 4},
+                    new BuyingItem {BookId = 3, Quantity = 1},
+                    new BuyingItem {BookId = 4, Quantity = 4},
+                    new BuyingItem {BookId = 5, Quantity = 3}
                 }
             };
             var bookPromotionCompaign = new HarryPotterPromotionCompaign(promotedBookIds);

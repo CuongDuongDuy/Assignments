@@ -38,13 +38,13 @@ namespace HarryPotter.Test
             var expectedAvailableBuyingSets = new[] {1, 2, 3, 4, 5};
             promotionCompaignMock.Setup(x => x.GetAvailableBuyingSets()).Returns(expectedAvailableBuyingSets);
 
-            var expectedDiscounts = new Dictionary<int, double>()
+            var expectedDiscounts = new Dictionary<int, decimal>()
             {
-                {1, 0.0},
-                {2, 0.05},
-                {3, 0.1},
-                {4, 0.2},
-                {5, 0.25}
+                {1, 0.0M},
+                {2, 0.05M},
+                {3, 0.1M},
+                {4, 0.2M},
+                {5, 0.25M}
             };
 
             promotionCompaignMock.Setup(x => x.Discounts()).Returns(expectedDiscounts);
@@ -55,9 +55,8 @@ namespace HarryPotter.Test
             {
                 new BuyingQuantityCombination
                 {
-                    Discount = 0.0,
-                    QuantityBuying = new List<int> {1,2,3 }
-                   //ToDO
+                    Discount = 0.0M,
+                    QuantityBuying = new List<int> {1, 2, 3}
 
                 }
             };

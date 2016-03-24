@@ -7,13 +7,13 @@ namespace HarryPotter
     {
         public List<BuyingSet> Items { get; set; }
 
-        public double GetTotal()
+        public decimal GetTotal()
         {
-            var sum = 0.0;
+            var sum = 0.0M;
 
             foreach (var buyingSetWithDiscount in Items)
             {
-                var subTotal = 0.0;
+                var subTotal = 0.0M;
                 foreach (var buyingItem in buyingSetWithDiscount.Items)
                 {
                     subTotal += BookStore.BookPricing.First(x => x.BookId == buyingItem.BookId).UnitPrice * buyingItem.Quantity *

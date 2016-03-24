@@ -11,15 +11,15 @@ namespace HarryPotter
             promotedBooks = promotedBookIds;
         }
 
-        private Dictionary<int, double> discounts = new Dictionary<int, double>()
+        private Dictionary<int, decimal> discounts = new Dictionary<int, decimal>()
         {
-            {1, 0.0},
-            {2, 0.05},
-            {3, 0.1},
-            {4, 0.2},
-            {5, 0.25}
+            {1, 0.00M},
+            {2, 0.05M},
+            {3, 0.10M},
+            {4, 0.20M},
+            {5, 0.25M}
         };
-        public Dictionary<int, double> Discounts()
+        public Dictionary<int, decimal> Discounts()
         {
             return discounts;
         }

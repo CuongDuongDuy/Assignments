@@ -4,7 +4,7 @@ namespace HarryPotter
 {
     public interface IPromotionCompaign
     {
-        Dictionary<int, double> Discounts();
+        Dictionary<int, decimal> Discounts();
         Dictionary<int, List<BuyingSet>> GetBuyingQuantityCombinations();
         int[] GetAvailableBuyingSets();
     }

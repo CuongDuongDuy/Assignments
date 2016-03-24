@@ -44,7 +44,7 @@ namespace HarryPotter
         }
 
         public static List<BuyingQuantityCombination> ToDiscountCombinations(this IEnumerable<string> combinations,
-            Dictionary<int, double> discounts)
+            Dictionary<int, decimal> discounts)
         {
             var result = new List<BuyingQuantityCombination>();
             foreach (var combination in combinations)
@@ -53,10 +53,10 @@ namespace HarryPotter
                     combination.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(int.Parse)
                         .ToList();
-                var totalDiscount = 0.0;
+                var totalDiscount = 0.0M;
                 foreach (var currentBuying in currentBuyingCombination)
                 {
-                    var currentDiscount = 0.0;
+                    var currentDiscount = 0.0M;
                     var found = discounts.TryGetValue(currentBuying, out currentDiscount);
                     if (found)
                     {

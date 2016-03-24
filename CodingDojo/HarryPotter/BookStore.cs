@@ -9,27 +9,27 @@ namespace HarryPotter
             new BookPricing
             {
                 BookId = 1,
-                UnitPrice = 8.0
+                UnitPrice = 8.0M
             },
             new BookPricing
             {
                 BookId = 2,
-                UnitPrice = 8.0
+                UnitPrice = 8.0M
             },
             new BookPricing
             {
                 BookId = 3,
-                UnitPrice = 8.0
+                UnitPrice = 8.0M
             },
             new BookPricing
             {
                 BookId = 4,
-                UnitPrice = 8.0
+                UnitPrice = 8.0M
             },
             new BookPricing
             {
                 BookId = 5,
-                UnitPrice = 8.0
+                UnitPrice = 8.0M
             },
         };
         public static List<Book> Books = new List<Book>
