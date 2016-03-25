@@ -32,10 +32,10 @@ namespace HarryPotter
             {
                 buyingQuantityCombinations = new Dictionary<int, List<BuyingSet>>();
 
-                for (var i = 1; i <= 5; i++)
+                for (var i = 1; i <= promotedBooks.Length; i++)
                 {
                     var buyingSets = new List<BuyingSet>();
-                    var availableSet = promotedBooks.Combinations(i);
+                    var availableSet = promotedBooks.CombinationsNotRepeat(i);
                     foreach (var set in availableSet)
                     {
                         var newBuyingSet = new BuyingSet();

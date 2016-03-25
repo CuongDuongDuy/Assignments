@@ -20,31 +20,36 @@ namespace HarryPotter
             var result = new List<BuyingBookCombination>();
             foreach (var buyingQuantityCombination in BuyingQuantityCombinations)
             {
-                if (buyingQuantityCombination.ItemsNeeded > buyingBasket.ItemsCount)
-                {
-                    continue;
-                }
                 var quantityBuying = buyingQuantityCombination.QuantityBuying;
-                var buyingBookCombination = new BuyingBookCombination();
-                for (var i = 0; i < quantityBuying.Count(); i++)
+                var moveToNextbuyingQuantityCombination = false;
+                while (buyingBasket.ItemsCount >= buyingQuantityCombination.ItemsNeeded)
                 {
-                    var currentBuyingSets = promotionCompaign.GetBuyingQuantityCombinations()[quantityBuying[i]];
-                    var buyingSet = buyingQuantityCombination.GetFirstAvailableBuyingCombination(currentBuyingSets,
-                        buyingBasket.Items);
-                    if (buyingSet == null)
+                    var buyingBookCombination = new BuyingBookCombination();
+                    for (var i = 0; i < quantityBuying.Count(); i++)
                     {
-                        foreach (var item in buyingBookCombination.Items)
+                        var currentBuyingSets = promotionCompaign.GetBuyingQuantityCombinations()[quantityBuying[i]];
+                        var buyingSet = buyingQuantityCombination.GetFirstAvailableBuyingCombination(currentBuyingSets,
+                            buyingBasket.Items);
+                        if (buyingSet == null)
                         {
-                            buyingBasket.PutIn(item);
+                            foreach (var item in buyingBookCombination.Items)
+                            {
+                                buyingBasket.PutIn(item);
+                            }
+                            moveToNextbuyingQuantityCombination = true;
+                            break;
                         }
-                        break;
+                        buyingSet.Discount = promotionCompaign.Discounts()[buyingSet.Items.Count];
+                        buyingBookCombination.Items.Add(buyingSet);
+                        buyingBasket.GetOut(buyingSet);
+                        if (i == quantityBuying.Count() - 1)
+                        {
+                            result.Add(buyingBookCombination);
+                        }
                     }
-                    buyingSet.Discount = promotionCompaign.Discounts()[buyingSet.Items.Count];
-                    buyingBookCombination.Items.Add(buyingSet);
-                    buyingBasket.GetOut(buyingSet);
-                    if (i == quantityBuying.Count() - 1)
+                    if (moveToNextbuyingQuantityCombination)
                     {
-                        result.Add(buyingBookCombination);
+                        break;
                     }
                 }
             }
@@ -59,11 +64,16 @@ namespace HarryPotter
             {
                 if (buyingQuantityCombinations == null)
                 {
-                    buyingQuantityCombinations =
-                        CombinationHelper.GetCombinations(promotionCompaign.GetAvailableBuyingSets(), buyingBasket.ItemsCount,
-                            "").ToDiscountCombinations(promotionCompaign.Discounts());
+                    buyingQuantityCombinations = new List<BuyingQuantityCombination>();
+                    for (int i = 1; i <= 2; i++)
+                    {
+                        var buyingQuantityCombination = promotionCompaign.GetAvailableBuyingSets().Combinations(i);
+
+                        buyingQuantityCombinations.AddRange(
+                            buyingQuantityCombination.ToDiscountCombinations(promotionCompaign.Discounts()));
+                    }
                 }
-                return buyingQuantityCombinations;
+                return buyingQuantityCombinations.OrderByDescending(x=>x.Discount).ToList();
             }
         }
     }
